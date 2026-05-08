@@ -1,0 +1,45 @@
+{
+  "name": "ai-death",
+  "version": "0.1.0",
+  "description": "Satirical: will a markdown file replace your company? Type a sentence, get a verdict. Run `npx ai-death` to open the local court.",
+  "type": "module",
+  "bin": {
+    "ai-death": "bin/ai-death.js"
+  },
+  "scripts": {
+    "start": "node bin/ai-death.js",
+    "dev": "node bin/ai-death.js"
+  },
+  "files": [
+    "bin/",
+    "index.html",
+    "styles.css",
+    "app.js",
+    "DESIGN.md",
+    "README.md"
+  ],
+  "keywords": [
+    "satire",
+    "saas",
+    "claude",
+    "static-site",
+    "death-score",
+    "markdown"
+  ],
+  "author": {
+    "name": "vnmoorthy",
+    "url": "https://github.com/vnmoorthy"
+  },
+  "license": "MIT",
+  "homepage": "https://github.com/vnmoorthy/ai-death#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vnmoorthy/ai-death.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vnmoorthy/ai-death/issues"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
