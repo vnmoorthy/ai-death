@@ -660,4 +660,73 @@
   });
 
   updateCounter();
+
+  // ---------- Live HUD telemetry on the right-side scope ----------
+  // Pure cosmetic. Random-walk numbers within sensible bounds. Pauses on reduced-motion.
+  (function startTelemetry() {
+    const reduced = window.matchMedia?.("(prefers-reduced-motion: reduce)");
+    if (reduced && reduced.matches) return;
+
+    const start = Date.now();
+    const fmt2 = (n) => n.toFixed(2);
+    const fmt3 = (n) => n.toFixed(3);
+    const fmt1 = (n) => n.toFixed(1);
+    const clamp = (n, lo, hi) => Math.max(lo, Math.min(hi, n));
+
+    const setText = (key, value) => {
+      const el = document.querySelector(`[data-tick="${key}"]`);
+      if (el) el.textContent = value;
+    };
+    const setBar = (idx, pct) => {
+      const bar = document.querySelector(`.hud-cell:nth-child(${idx}) .hud-bar > span`);
+      if (bar) bar.style.setProperty("--w", clamp(pct, 0, 100) + "%");
+    };
+
+    let latency = 0.187;
+    let conf    = 94.2;
+    let lines   = 47;
+    let gap     = 0.91;
+    let pending = 0;
+    let seq     = 0;
+
+    const tick = () => {
+      // Time clock since the page loaded
+      const t = Math.floor((Date.now() - start) / 1000);
+      const hh = String(Math.floor(t / 3600) % 24).padStart(2, "0");
+      const mm = String(Math.floor(t / 60) % 60).padStart(2, "0");
+      const ss = String(t % 60).padStart(2, "0");
+      setText("time", `${hh}:${mm}:${ss}`);
+
+      // SEQ-#### increments by 1-3 per tick
+      seq += 1 + Math.floor(Math.random() * 3);
+      setText("seq", "SEQ-" + String(seq % 10000).padStart(4, "0"));
+
+      // Latency: random walk in [0.080, 0.420]
+      latency = clamp(latency + (Math.random() - 0.5) * 0.06, 0.08, 0.42);
+      setText("latency", fmt3(latency));
+      setBar(1, (latency / 0.5) * 100);
+
+      // Confidence: random walk in [82, 99.9]
+      conf = clamp(conf + (Math.random() - 0.5) * 1.2, 82, 99.9);
+      setText("conf", fmt1(conf));
+      setBar(2, conf);
+
+      // Skill lines: random walk in [12, 96], integer
+      lines = clamp(Math.round(lines + (Math.random() - 0.5) * 6), 12, 96);
+      setText("lines", String(lines));
+      setBar(3, (lines / 100) * 100);
+
+      // Model gap: random walk in [0.42, 0.99]
+      gap = clamp(gap + (Math.random() - 0.5) * 0.05, 0.42, 0.99);
+      setText("gap", fmt2(gap));
+      setBar(4, gap * 100);
+
+      // Pending cases — increments slowly
+      if (Math.random() < 0.18) pending += 1;
+      setText("pending", String(pending));
+    };
+
+    tick();
+    setInterval(tick, 850);
+  })();
 })();

@@ -460,7 +460,7 @@ textarea:focus {
   display: inline-block;
 }
 
-/* RIGHT-SIDE COURT ART */
+/* RIGHT-SIDE COURT ART — surveillance scope */
 .court-art {
   position: relative;
   align-self: stretch;
@@ -472,13 +472,14 @@ textarea:focus {
   display: flex;
   flex-direction: column;
   align-items: stretch;
-  gap: 28px;
+  gap: 22px;
   border: 1px solid var(--rule-2);
   background:
     radial-gradient(120% 80% at 50% -10%, rgba(255,59,48,0.06), transparent 55%),
+    radial-gradient(80% 60% at 100% 100%, rgba(116,229,255,0.04), transparent 60%),
     var(--bg-card);
   border-radius: var(--radius);
-  padding: 28px 24px 24px;
+  padding: 22px 22px 18px;
   overflow: hidden;
   isolation: isolate;
   container-type: inline-size;
@@ -491,36 +492,179 @@ textarea:focus {
   background-image:
     repeating-linear-gradient(
       0deg,
-      rgba(255,255,255,0.02) 0,
-      rgba(255,255,255,0.02) 1px,
+      rgba(255,255,255,0.022) 0,
+      rgba(255,255,255,0.022) 1px,
       transparent 1px,
       transparent 4px
     );
   z-index: 0;
 }
 
+/* Corner brackets — sci-fi UI staple */
+.bracket {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border: 1.25px solid var(--ink-3);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.7;
+}
+.bracket-tl { top: 8px;    left: 8px;    border-right: 0; border-bottom: 0; }
+.bracket-tr { top: 8px;    right: 8px;   border-left: 0;  border-bottom: 0; }
+.bracket-bl { bottom: 8px; left: 8px;    border-right: 0; border-top: 0; }
+.bracket-br { bottom: 8px; right: 8px;   border-left: 0;  border-top: 0; }
+
+/* Head bar: REC indicator + scope ID */
+.court-art-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  color: var(--ink-3);
+  text-transform: uppercase;
+  padding: 4px 6px 0;
+  position: relative;
+  z-index: 1;
+  border-bottom: 1px dashed var(--rule);
+  padding-bottom: 10px;
+  flex-wrap: wrap;
+}
+.rec {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+.rec-dot {
+  width: 7px; height: 7px;
+  background: var(--accent);
+  border-radius: 50%;
+  animation: rec-blink 1.2s steps(1, end) infinite;
+}
+@keyframes rec-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0.25; }
+}
+.rec-label { color: var(--ink-2); font-weight: 600; }
+.rec-time { color: var(--ink-3); font-variant-numeric: tabular-nums; }
+.court-art-id { color: var(--ink-3); }
+.op-sep { color: var(--ink-4); margin: 0 4px; }
+
 /* Court seal (SVG) */
 .court-seal {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 4px 0 6px;
+  margin: 0;
   position: relative;
   z-index: 1;
 }
 .seal-svg {
-  width: clamp(180px, 60%, 240px);
+  width: clamp(220px, 78%, 320px);
   height: auto;
   color: var(--ink-2);
-  filter: drop-shadow(0 0 24px rgba(255,59,48,0.06));
+  filter: drop-shadow(0 0 32px rgba(255,59,48,0.08));
 }
-.seal-rotor {
-  transform-origin: 120px 120px;
-  animation: seal-spin 38s linear infinite;
+
+/* Counter-rotating rings */
+.seal-rotor-cw  { transform-origin: 160px 160px; animation: seal-spin-cw 42s linear infinite; }
+.seal-rotor-ccw { transform-origin: 160px 160px; animation: seal-spin-ccw 30s linear infinite; }
+@keyframes seal-spin-cw  { to { transform: rotate(360deg); } }
+@keyframes seal-spin-ccw { to { transform: rotate(-360deg); } }
+
+/* Radar sweep beam */
+.seal-radar {
+  transform-origin: 160px 160px;
+  color: var(--accent);
+  animation: seal-radar 6s linear infinite;
+  mix-blend-mode: screen;
 }
-@keyframes seal-spin { to { transform: rotate(360deg); } }
-.seal-tick { color: var(--ink-3); }
+@keyframes seal-radar { to { transform: rotate(360deg); } }
+
+/* Hot-spot indicator on outer ring — pulses + rotates */
+.seal-hotspot {
+  transform-origin: 160px 160px;
+  animation: seal-hot-spin 6s linear infinite, seal-hot-pulse 1.2s ease-in-out infinite;
+}
+@keyframes seal-hot-spin  { to { transform: rotate(360deg); } }
+@keyframes seal-hot-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
+}
+
+/* Wireframe core */
+.core-spin     { transform-origin: 160px 160px; animation: core-spin 22s linear infinite; }
+.core-spin-rev { transform-origin: 160px 160px; animation: core-spin-rev 14s linear infinite; }
+@keyframes core-spin     { to { transform: rotate(360deg); } }
+@keyframes core-spin-rev { to { transform: rotate(-360deg); } }
+
 .seal-mark { color: var(--ink); }
+
+/* HUD TELEMETRY GRID */
+.hud {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+  position: relative;
+  z-index: 1;
+}
+.hud-cell {
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  padding: 9px 10px 8px;
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.012), transparent);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+.hud-label {
+  font-family: var(--mono);
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  color: var(--ink-4);
+  text-transform: uppercase;
+}
+.hud-value {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: clamp(15px, 4.6cqw, 19px);
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+  min-height: 1.1em;
+}
+.hud-unit {
+  font-size: 0.55em;
+  font-weight: 500;
+  color: var(--ink-3);
+  letter-spacing: 0.06em;
+}
+.hud-bar {
+  height: 2px;
+  background: var(--rule-2);
+  border-radius: 1px;
+  overflow: hidden;
+  margin-top: 4px;
+}
+.hud-bar > span {
+  display: block;
+  height: 100%;
+  width: var(--w, 0%);
+  background: var(--ink-3);
+  transition: width 0.6s cubic-bezier(.2,.8,.2,1);
+}
+.hud-cell:nth-child(1) .hud-bar > span { background: var(--accent-2); }
+.hud-cell:nth-child(2) .hud-bar > span { background: var(--tier-immortal); }
+.hud-cell:nth-child(3) .hud-bar > span { background: var(--tier-sweating); }
+.hud-cell:nth-child(4) .hud-bar > span { background: var(--accent); }
 
 /* Tier ladder */
 .tier-ladder {
@@ -536,12 +680,28 @@ textarea:focus {
 }
 .ladder-item {
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 14px;
   padding: 10px 0;
   border-bottom: 1px dashed var(--rule);
   transition: background 0.2s ease;
+}
+.ladder-bar {
+  display: block;
+  width: 38px;
+  height: 4px;
+  background: var(--rule-2);
+  border-radius: 1px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.ladder-bar > span {
+  display: block;
+  height: 100%;
+  width: var(--w, 0%);
+  background: currentColor;
+  opacity: 0.85;
 }
 .ladder-item:last-child { border-bottom: 0; }
 .ladder-num {
@@ -617,7 +777,51 @@ textarea:focus {
   display: inline-block;
 }
 
-/* Subtle moving scan line */
+/* Case ticker — scrolling marquee */
+.ticker {
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, rgba(255,255,255,0.015), transparent);
+  overflow: hidden;
+  padding: 8px 0;
+  mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0, #000 18px, #000 calc(100% - 18px), transparent 100%);
+}
+.ticker-track {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  white-space: nowrap;
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--ink-2);
+  animation: ticker-roll 80s linear infinite;
+  padding-left: 100%;
+}
+@keyframes ticker-roll {
+  to { transform: translateX(-50%); }
+}
+.t-tag {
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  font-size: 9.5px;
+  padding: 2px 6px;
+  border: 1px solid currentColor;
+  border-radius: 1px;
+  margin: 0 2px;
+}
+.t-immortal { color: var(--tier-immortal); }
+.t-fortress { color: var(--tier-fortress); }
+.t-sweating { color: var(--tier-sweating); }
+.t-thin     { color: var(--tier-thin); }
+.t-dead     { color: var(--tier-dead); }
+
+/* Subtle moving scan line over the whole panel */
 .court-scan {
   position: absolute;
   inset: 0;
