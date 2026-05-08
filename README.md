@@ -1,8 +1,25 @@
 # AI Death
 
+[![npm](https://img.shields.io/npm/v/ai-death?label=npm&color=ff3b30&style=flat-square)](https://www.npmjs.com/package/ai-death)
+[![license](https://img.shields.io/npm/l/ai-death?style=flat-square)](LICENSE)
+[![node](https://img.shields.io/node/v/ai-death?style=flat-square)](package.json)
+
 A satirical web app that rates a company description on its likelihood of being replaced by a Claude Skill (a `.md` file).
 
 **No URL required.** Type a sentence about what your company / product / idea does, and the court delivers a verdict. Pre-launch founders, idea-stage builders, hackathon teams, and side-project devs welcome.
+
+## Quick start
+
+One command, no install:
+
+```sh
+npx ai-death
+```
+
+Boots a local server at `http://127.0.0.1:5173`. Ctrl+C to dismiss the bench.
+
+- **npm:** https://www.npmjs.com/package/ai-death
+- **Source:** https://github.com/vnmoorthy/ai-death
 
 ## Tier ladder
 
