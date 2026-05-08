@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Editor / harness
+.claude/
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Dependency caches (none today, future-proof)
+node_modules/
+.cache/

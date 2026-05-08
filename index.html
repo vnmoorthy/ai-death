@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Just Describe — Will a markdown file replace your company?</title>
+  <meta name="description" content="Describe what your company does. We'll tell you how soon a Claude Skill (.md file) replaces it. No URL required, no website needed." />
+
+  <meta property="og:title" content="Just Describe" />
+  <meta property="og:description" content="Describe what your company does. We'll roast its lifespan." />
+  <meta property="og:type" content="website" />
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230A0B0D'/%3E%3Crect x='14' y='14' width='36' height='36' fill='none' stroke='%23E8E8EA' stroke-width='3'/%3E%3Crect x='26' y='26' width='12' height='12' fill='%23FF3B30'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="skip" href="#describe">Skip to form</a>
+  <div class="grid-bg" aria-hidden="true"></div>
+
+  <header class="site">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-name">JUST&nbsp;DESCRIBE</span>
+      <span class="brand-tag">/&nbsp;Saaspocalypse Field Office</span>
+    </div>
+    <div class="meta">
+      <span class="meta-item">v0.1</span>
+      <span class="meta-dot" aria-hidden="true"></span>
+      <span class="meta-item">EST. 2026</span>
+      <span class="meta-dot" aria-hidden="true"></span>
+      <span class="meta-item">FILE&nbsp;&rarr;&nbsp;VERDICT</span>
+    </div>
+  </header>
+
+  <main>
+    <div class="hero-grid">
+      <section class="hero" id="describe">
+        <div class="section-head">
+          <span class="section-num">01</span>
+          <span class="section-label">INTAKE</span>
+        </div>
+
+        <h1 class="display">
+          Will a markdown file
+          <span class="display-em">replace your company?</span>
+        </h1>
+
+        <p class="lede">
+          No URL. No landing page. No product. Just words. Type a sentence or two.
+          The court will deliberate.
+        </p>
+
+        <form id="describe-form" class="form" novalidate>
+          <label for="description" class="field-label">
+            <span class="field-num">A.</span>
+            <span>Describe the entity</span>
+          </label>
+
+          <textarea
+            id="description"
+            name="description"
+            rows="3"
+            maxlength="1500"
+            placeholder="An AI-powered note-taking app for marketing teams that summarizes meetings and posts to Slack."
+            autocomplete="off"
+            autocapitalize="sentences"
+            spellcheck="true"
+          ></textarea>
+
+          <fieldset class="context" id="context">
+            <legend class="field-label">
+              <span class="field-num">B.</span>
+              <span>Optional context &mdash; sharpens the verdict</span>
+            </legend>
+
+            <div class="context-row" data-group="stage">
+              <span class="context-label">STAGE</span>
+              <div class="pill-group" role="radiogroup" aria-label="Stage">
+                <button type="button" class="pill" data-group="stage" data-value="idea" role="radio" aria-checked="false">Idea</button>
+                <button type="button" class="pill" data-group="stage" data-value="prelaunch" role="radio" aria-checked="false">Pre-launch</button>
+                <button type="button" class="pill" data-group="stage" data-value="users" role="radio" aria-checked="false">Has users</button>
+                <button type="button" class="pill" data-group="stage" data-value="paying" role="radio" aria-checked="false">Paying customers</button>
+                <button type="button" class="pill" data-group="stage" data-value="contracts" role="radio" aria-checked="false">Enterprise contracts</button>
+              </div>
+            </div>
+
+            <div class="context-row" data-group="buyer">
+              <span class="context-label">BUYER</span>
+              <div class="pill-group" role="radiogroup" aria-label="Buyer">
+                <button type="button" class="pill" data-group="buyer" data-value="consumer" role="radio" aria-checked="false">Consumer</button>
+                <button type="button" class="pill" data-group="buyer" data-value="smb" role="radio" aria-checked="false">SMB</button>
+                <button type="button" class="pill" data-group="buyer" data-value="midmarket" role="radio" aria-checked="false">Mid-market</button>
+                <button type="button" class="pill" data-group="buyer" data-value="enterprise" role="radio" aria-checked="false">Enterprise</button>
+                <button type="button" class="pill" data-group="buyer" data-value="regulated" role="radio" aria-checked="false">Regulated</button>
+              </div>
+            </div>
+
+            <div class="context-row" data-group="surface">
+              <span class="context-label">SURFACE</span>
+              <div class="pill-group" role="radiogroup" aria-label="Surface">
+                <button type="button" class="pill" data-group="surface" data-value="software" role="radio" aria-checked="false">Pure software</button>
+                <button type="button" class="pill" data-group="surface" data-value="hardware" role="radio" aria-checked="false">Hardware</button>
+                <button type="button" class="pill" data-group="surface" data-value="physical" role="radio" aria-checked="false">Physical ops</button>
+                <button type="button" class="pill" data-group="surface" data-value="compliance" role="radio" aria-checked="false">Compliance gates</button>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-row">
+            <span class="counter" id="counter" aria-live="off">000 / 1500</span>
+            <button type="submit" class="deliver" id="deliver" disabled>
+              <span>Deliver verdict</span>
+              <span class="deliver-arrow" aria-hidden="true">&rarr;</span>
+            </button>
+          </div>
+          <p class="hint" id="hint">Sentence or two. Cmd&thinsp;/&thinsp;Ctrl + Enter submits.</p>
+        </form>
+
+        <ul class="manifest">
+          <li><span class="manifest-num">·</span> Pre-launch founders welcome.</li>
+          <li><span class="manifest-num">·</span> Idea-stage builders welcome.</li>
+          <li><span class="manifest-num">·</span> Napkin sketches welcome.</li>
+          <li><span class="manifest-num">·</span> Hospitals, banks, and hardware companies&mdash;the court will be brief.</li>
+        </ul>
+      </section>
+
+      <aside class="court-art" aria-hidden="true">
+        <div class="court-art-inner">
+          <div class="court-seal">
+            <svg viewBox="0 0 240 240" class="seal-svg" role="img" aria-label="Court seal">
+              <defs>
+                <path id="seal-path" d="M 120,120 m -96,0 a 96,96 0 1,1 192,0 a 96,96 0 1,1 -192,0" />
+              </defs>
+              <circle cx="120" cy="120" r="110" fill="none" stroke="currentColor" stroke-width="0.75" opacity="0.35" />
+              <circle cx="120" cy="120" r="100" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.2" />
+              <circle cx="120" cy="120" r="64"  fill="none" stroke="currentColor" stroke-width="0.75" opacity="0.4" />
+              <g class="seal-rotor">
+                <text font-family="JetBrains Mono, monospace" font-size="9.5" letter-spacing="3.4" fill="currentColor" opacity="0.85">
+                  <textPath href="#seal-path" startOffset="0">
+                    THE COURT OF MARKDOWN  ·  CASE INTAKE OPEN  ·  ALL CASES PROCEED  ·  EST. 2026  ·
+                  </textPath>
+                </text>
+              </g>
+              <g class="seal-tick">
+                <line x1="120" y1="14" x2="120" y2="22" stroke="currentColor" stroke-width="1" />
+                <line x1="226" y1="120" x2="218" y2="120" stroke="currentColor" stroke-width="1" />
+                <line x1="120" y1="226" x2="120" y2="218" stroke="currentColor" stroke-width="1" />
+                <line x1="14" y1="120" x2="22" y2="120" stroke="currentColor" stroke-width="1" />
+              </g>
+              <g class="seal-mark">
+                <rect x="92" y="92" width="56" height="56" fill="none" stroke="currentColor" stroke-width="1.25" />
+                <rect x="106" y="106" width="28" height="28" fill="var(--accent)" />
+                <text x="120" y="178" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" letter-spacing="2.5" fill="currentColor" opacity="0.6">JD</text>
+              </g>
+            </svg>
+          </div>
+
+          <ol class="tier-ladder" aria-hidden="true">
+            <li class="ladder-item ladder-immortal">
+              <span class="ladder-num">00</span>
+              <span class="ladder-name">IMMORTAL</span>
+            </li>
+            <li class="ladder-item ladder-fortress">
+              <span class="ladder-num">01</span>
+              <span class="ladder-name">FORTRESS</span>
+            </li>
+            <li class="ladder-item ladder-sweating">
+              <span class="ladder-num">02</span>
+              <span class="ladder-name">SWEATING</span>
+            </li>
+            <li class="ladder-item ladder-thin">
+              <span class="ladder-num">03</span>
+              <span class="ladder-name">THIN&nbsp;ICE</span>
+            </li>
+            <li class="ladder-item ladder-dead">
+              <span class="ladder-num">04</span>
+              <span class="ladder-name">DEAD</span>
+            </li>
+          </ol>
+
+          <div class="court-status">
+            <span class="court-pulse" aria-hidden="true"></span>
+            <span>COURT IN SESSION</span>
+            <span class="court-status-dot" aria-hidden="true"></span>
+            <span>0&hairsp;CASES&hairsp;PENDING</span>
+          </div>
+
+          <div class="court-scan" aria-hidden="true"></div>
+        </div>
+      </aside>
+    </div>
+
+    <section
+      class="verdict-region"
+      id="verdict-region"
+      aria-live="polite"
+      aria-atomic="true"
+    ></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-row">
+      <span class="footer-num">04</span>
+      <span class="footer-label">FINE&nbsp;PRINT</span>
+    </div>
+    <p>All verdicts are satirical. Not legal, financial, or product advice. Probably not advice at all.</p>
+    <p class="footer-credit">A satirical jury for the SaaSpocalypse era. Original verdicts, original spite.</p>
+  </footer>
+
+  <template id="card-template">
+    <article class="card" tabindex="-1">
+      <header class="card-head">
+        <div class="section-head">
+          <span class="section-num">02</span>
+          <span class="section-label">VERDICT</span>
+        </div>
+        <span class="case-number" data-case>#00000</span>
+      </header>
+
+      <div class="card-body">
+        <p class="card-eyebrow">THE DECEASED</p>
+        <blockquote class="quote" data-quote></blockquote>
+
+        <div class="ruler"><span></span><span></span><span></span></div>
+
+        <div class="tier-block">
+          <p class="card-eyebrow muted">SENTENCE</p>
+          <p class="tier" data-tier>&nbsp;</p>
+          <div class="score-row">
+            <span class="score-label">Death probability</span>
+            <span class="score-value"><span data-score>0</span><span class="score-of"> / 100</span></span>
+          </div>
+        </div>
+
+        <div class="ruler"><span></span><span></span><span></span></div>
+
+        <section class="card-section">
+          <header class="section-head section-head-tight">
+            <span class="section-num">03</span>
+            <span class="section-label">COURT'S NOTES</span>
+          </header>
+          <ul class="notes" data-notes></ul>
+        </section>
+
+        <section class="card-section">
+          <header class="section-head section-head-tight">
+            <span class="section-num">04</span>
+            <span class="section-label">REPLACEMENT SKILL</span>
+          </header>
+          <pre class="skill" data-skill></pre>
+        </section>
+
+        <p class="card-foot">
+          <span>JUST DESCRIBE</span>
+          <span class="card-foot-dot" aria-hidden="true"></span>
+          <span>The court rests.</span>
+        </p>
+      </div>
+    </article>
+    <div class="retry">
+      <button type="button" class="retry-btn" data-retry>
+        <span class="retry-arrow" aria-hidden="true">&larr;</span>
+        <span>Describe another</span>
+      </button>
+    </div>
+  </template>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
