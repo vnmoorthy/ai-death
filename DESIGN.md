@@ -1,6 +1,6 @@
-# DESIGN.md — Just Describe
+# DESIGN.md — AI Death
 
-The design source of truth for **Just Describe** (working title), a satirical web app that rates a company description on its likelihood of being replaced by a Claude Skill (a `.md` file). No URL needed — just describe what you do.
+The design source of truth for **AI Death**, a satirical web app that rates a company description on its likelihood of being replaced by a Claude Skill (a `.md` file). No URL needed — just describe what you do.
 
 ## Brand voice
 
@@ -47,7 +47,7 @@ Type rules:
 
 A single-screen experience on desktop. Three zones, vertically stacked on mobile:
 
-1. **Header** — small wordmark "JUST DESCRIBE" in mono, flush left. Right side: a tiny version + meta strip (small, 11px, muted).
+1. **Header** — small wordmark "AI DEATH" in mono, flush left. Right side: a tiny version + meta strip (small, 11px, muted).
 2. **Hero / Input** — center-stage. Big prompt: "Describe what your company does." A multi-line textarea (3 visible rows, expands). Below it: a single red **DELIVER VERDICT** button.
 3. **Verdict card** — appears in place of the input after submission, slides up. The card is the screenshot-ready artifact.
 
@@ -96,7 +96,7 @@ Layout (1080×1350 share-aspect on desktop, full-bleed on mobile):
 │  │ Read transcript. Bullet 5 points. │         │
 │  └──────────────────────────────────┘         │
 │                                                │
-│  justdescribe.app                              │  ← footer wordmark
+│  aideath.app                                   │  ← footer wordmark
 └──────────────────────────────────────────────┘
 ```
 
