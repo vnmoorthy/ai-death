@@ -18,6 +18,8 @@ npx ai-death
 
 Boots a local server at `http://127.0.0.1:5173`. No install, no API key, no account.
 
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fvnmoorthy%2Fai-death&project-name=ai-death&repository-name=ai-death)
+
 ## What you get
 
 | Description | Tier | Score |
