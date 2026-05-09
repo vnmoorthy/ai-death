@@ -1171,8 +1171,10 @@ body[data-state="verdict"] .court-art { display: none; }
 }
 .footer-credit a:hover { color: var(--ink); border-color: var(--ink); }
 
-/* HIDE FORM WHILE VERDICT */
+/* HIDE FORM WHILE VERDICT — tighten padding so the card sits near the top */
 body[data-state="verdict"] .hero { display: none; }
+body[data-state="verdict"] main { padding-top: clamp(28px, 4vw, 56px); }
+body[data-state="verdict"] .verdict-region { margin-top: 0; }
 
 /* MOBILE */
 @media (max-width: 720px) {

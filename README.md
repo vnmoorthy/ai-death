@@ -4,52 +4,109 @@
 [![license](https://img.shields.io/npm/l/ai-death?style=flat-square)](LICENSE)
 [![node](https://img.shields.io/node/v/ai-death?style=flat-square)](package.json)
 
-A satirical web app that rates a company description on its likelihood of being replaced by a Claude Skill (a `.md` file).
+> Will a markdown file replace your company? Type a sentence, find out.
 
-**No URL required.** Type a sentence about what your company / product / idea does, and the court delivers a verdict. Pre-launch founders, idea-stage builders, hackathon teams, and side-project devs welcome.
+A satirical web app and CLI that rates a company description on its likelihood of being replaced by a Claude Skill — a `.md` file. Five tiers from **IMMORTAL** to **DEAD**, deterministic in-browser scorer, optional context controls, an animated court HUD that does way too much.
 
-## Quick start
+![AI Death — landing page with the surveillance HUD on the right](docs/screenshots/01-hero.png)
 
-One command, no install:
+## Try it in 5 seconds
 
 ```sh
 npx ai-death
 ```
 
-Boots a local server at `http://127.0.0.1:5173`. Ctrl+C to dismiss the bench.
+Boots a local server at `http://127.0.0.1:5173`. No install, no API key, no account.
 
-- **npm:** https://www.npmjs.com/package/ai-death
-- **Source:** https://github.com/vnmoorthy/ai-death
+## What you get
+
+| Description | Tier | Score |
+|---|---|---|
+| *"AI assistant that summarizes meetings and writes follow-up emails using prompt templates."* | `DEAD` | 94 |
+| *"Two-sided marketplace connecting freelance plumbers with homeowners, with payments and dispute resolution."* | `FORTRESS` | 26 |
+| *"HIPAA-compliant electronic health records system used by 200 hospitals. Integrates with lab equipment, insurance billing, and physical pharmacy dispensing."* | `IMMORTAL` | 0 |
+
+The court delivers a verdict, a death probability, three sharpened roast notes, and a mock `.md` skill that would replace the product.
+
+| | |
+|---|---|
+| ![DEAD verdict at 94/100](docs/screenshots/02-dead.png) | ![FORTRESS verdict at 26/100](docs/screenshots/04-fortress.png) |
+| **DEAD** — wrappers, summarizers, drafters, "AI-powered X" | **FORTRESS** — marketplaces, networks, deep integrations |
+
+![IMMORTAL verdict at 0/100](docs/screenshots/03-immortal.png)
+*IMMORTAL — compliance gates, regulated buyers, atoms, contracts*
+
+## Why this exists
+
+A lot of SaaS today is a UI wrapper on logic that an LLM can replicate. A subset isn't, because it has real moats: regulators, atoms, networks, contracts. This is a court that helps you tell the difference, in one sentence.
+
+The premise is mean enough to be useful. If you can't say what your product does in a way that survives the court, the product probably doesn't survive the next year of model releases either.
 
 ## Tier ladder
 
 | Tier | Score | Vibe |
 |---|---|---|
-| `IMMORTAL` | 0–19 | Compliance, hardware, real-world ops. The court grants stay of execution. |
-| `FORTRESS` | 20–39 | Network effects, marketplaces, deep integrations. |
-| `SWEATING` | 40–59 | Solid product, but the LLM is closing in. |
-| `THIN ICE` | 60–79 | Mostly a UI on top of GPT/Claude with a logo. |
-| `DEAD` | 80–100 | Could be a one-page markdown skill. Funeral arrangements. |
+| `IMMORTAL` | 0 – 19 | Compliance, hardware, real-world ops. Stay of execution granted. |
+| `FORTRESS` | 20 – 39 | Network effects, marketplaces, deep integrations. |
+| `SWEATING` | 40 – 59 | Solid product, but the LLM is closing in. |
+| `THIN ICE` | 60 – 79 | Mostly a UI on top of GPT/Claude with a logo. |
+| `DEAD` | 80 – 100 | Could be a one-page markdown skill. Funeral arrangements. |
 
 ## Optional context
 
-Below the description, three pill rows sharpen the verdict:
+Below the description, three pill rows can sharpen the verdict by ±42 points and pull tier-aware roast notes:
 
-- **STAGE** — Idea / Pre-launch / Has users / Paying customers / Enterprise contracts
-- **BUYER** — Consumer / SMB / Mid-market / Enterprise / Regulated
-- **SURFACE** — Pure software / Hardware / Physical ops / Compliance gates
+- **Stage** — Idea / Pre-launch / Has users / Paying customers / Enterprise contracts
+- **Buyer** — Consumer / SMB / Mid-market / Enterprise / Regulated
+- **Surface** — Pure software / Hardware / Physical ops / Compliance gates
 
-All optional. The description alone delivers a full verdict; pills can swing the score by up to ~42 points either direction and pull tier-aware roast notes.
+Same description, very different verdict. An idea-stage consumer wrapper reads `THIN ICE / DEAD`. The same idea pivoted to enterprise-contract regulated compliance gates lands `FORTRESS / IMMORTAL`.
 
-## Run it locally
+## Shareable verdicts
 
-It's static HTML/CSS/JS. No build step.
+Pre-bake a verdict by encoding the description (and optional context) in the URL hash:
+
+```
+http://127.0.0.1:5173/#desc=ENCODED_TEXT&stage=paying&buyer=enterprise&surface=compliance
+```
+
+The form auto-submits on load, so you can drop these into Slack/X/HN comments.
+
+## How the scorer works
+
+100% client-side, deterministic, no API calls.
+
+1. Start at 50.
+2. **Decrement** for moat keywords: `hipaa`, `hardware`, `marketplace`, `payments`, `compliance`, `network`, `enterprise`, `regulated`, … (~40 patterns).
+3. **Increment** for wrapper keywords: `summariz`, `chatbot`, `wrapper`, `cold email`, `template`, `resume rewrite`, … (~40 patterns).
+4. Apply the optional Stage / Buyer / Surface shifts.
+5. Length signals: very short input is vague (penalty), very long is specific (small mercy).
+6. Add deterministic noise from a hash of the input + context, so identical inputs are stable but the spread feels alive.
+7. Clamp 0 – 100, map to tier.
+
+Lexicons live at the top of [`app.js`](app.js): `MOATS`, `REPLACEABLE`, `TIERS`, `TAGGED_ROASTS`, `CONTEXT_SHIFTS`, `CONTEXT_ROASTS`, plus the per-tag verb map inside `buildSkill`. Tweaking is one regex away.
+
+## Repo
+
+```
+.
+├── index.html           ← markup + verdict-card template
+├── styles.css           ← design tokens, tier colors, court-HUD animations
+├── app.js               ← scorer, roast bank, render
+├── bin/ai-death.js      ← zero-dep Node http server (Node 18+)
+├── package.json         ← npm bin, files allowlist
+├── DESIGN.md            ← design system source of truth
+└── docs/screenshots/    ← README assets + 1200×630 OG card
+```
+
+## Run from source
+
+It's static HTML/CSS/JS. Any static server works.
 
 ```sh
-# any static server works
+git clone https://github.com/vnmoorthy/ai-death.git
+cd ai-death
 python3 -m http.server 5173
-# or
-npx serve .
 ```
 
 Then open http://localhost:5173.
@@ -59,34 +116,17 @@ Then open http://localhost:5173.
 Drop the folder on any static host:
 
 - **Netlify / Vercel / Cloudflare Pages** — drag the folder into the dashboard.
-- **GitHub Pages** — settings → Pages → deploy from `main` / `/`.
-- **Anywhere with a `python3 -m http.server`** — same as local.
+- **GitHub Pages** — Settings → Pages → deploy from `main` / `/`.
+- **Anywhere with `python3 -m http.server`** — same as local.
 
-No environment variables. No keys.
-
-## How the scorer works
-
-Pure client-side, deterministic. No API calls.
-
-1. Start at 50.
-2. Decrement for "moat" keywords (`hipaa`, `hardware`, `marketplace`, `payments`, `compliance`, …).
-3. Increment for "wrapper" keywords (`summariz`, `chatbot`, `wrapper`, `cold email`, `template`, …).
-4. Apply optional context shifts from Stage / Buyer / Surface pills.
-5. Length signals: very short = vague (penalty); very long = specific (small mercy).
-6. Add deterministic noise from a hash of the input so identical inputs are stable but the spread feels lively.
-7. Clamp 0–100, map to tier.
-
-Weights and lexicons live at the top of [app.js](app.js) — `MOATS`, `REPLACEABLE`, `TIERS`, `TAGGED_ROASTS`, `CONTEXT_SHIFTS`, `CONTEXT_ROASTS`, and the per-tag verb map inside `buildSkill`.
-
-## Files
-
-- `index.html` — markup + verdict-card template
-- `styles.css` — design tokens, tier color swaps, motion, court art
-- `app.js` — scorer, roast bank, context shifts, render
-- `DESIGN.md` — design system source of truth (brand voice, color, type, component inventory)
+Zero environment variables. Zero keys.
 
 ## What this is NOT
 
 - Not a real evaluation tool. Don't make decisions based on the verdict.
 - Not a lead-gen page. No email capture, no waitlist, no analytics.
 - Not advice. Probably not even useful. Definitely funny if your description is bad.
+
+## License
+
+[MIT](LICENSE) © vnmoorthy

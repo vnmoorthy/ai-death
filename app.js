@@ -661,6 +661,29 @@
 
   updateCounter();
 
+  // ---------- Shareable URL hash: #desc=...&stage=...&buyer=...&surface=... ----------
+  // If present on load, auto-fill and submit so links can pre-bake verdicts.
+  (function bootFromHash() {
+    if (!location.hash || location.hash.length < 2) return;
+    const params = new URLSearchParams(location.hash.slice(1));
+    const desc = params.get("desc");
+    if (!desc || desc.length < MIN_LEN) return;
+
+    for (const group of ["stage", "buyer", "surface"]) {
+      const v = params.get(group);
+      if (!v) continue;
+      const pill = els.context.querySelector(`.pill[data-group="${group}"][data-value="${v}"]`);
+      if (pill) {
+        pill.setAttribute("aria-checked", "true");
+        state.context[group] = v;
+      }
+    }
+
+    els.textarea.value = desc.slice(0, MAX_LEN);
+    updateCounter();
+    els.form.requestSubmit();
+  })();
+
   // ---------- Live HUD telemetry on the right-side scope ----------
   // Pure cosmetic. Random-walk numbers within sensible bounds. Pauses on reduced-motion.
   (function startTelemetry() {
