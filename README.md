@@ -1,14 +1,17 @@
 # AI Death
 
+[![Live demo](https://img.shields.io/badge/live%20demo-ai--death.vercel.app-ff3b30?style=flat-square)](https://ai-death.vercel.app)
 [![npm](https://img.shields.io/npm/v/ai-death?label=npm&color=ff3b30&style=flat-square)](https://www.npmjs.com/package/ai-death)
 [![license](https://img.shields.io/npm/l/ai-death?style=flat-square)](LICENSE)
 [![node](https://img.shields.io/node/v/ai-death?style=flat-square)](package.json)
 
 > Will a markdown file replace your company? Type a sentence, find out.
 
+**Live:** https://ai-death.vercel.app
+
 A satirical web app and CLI that rates a company description on its likelihood of being replaced by a Claude Skill — a `.md` file. Five tiers from **IMMORTAL** to **DEAD**, deterministic in-browser scorer, optional context controls, an animated court HUD that does way too much.
 
-![AI Death — landing page with the surveillance HUD on the right](docs/screenshots/01-hero.png)
+[![AI Death — landing page with the surveillance HUD on the right](docs/screenshots/01-hero.png)](https://ai-death.vercel.app)
 
 ## Try it in 5 seconds
 
