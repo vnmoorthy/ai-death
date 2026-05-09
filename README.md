@@ -25,11 +25,13 @@ Boots a local server at `http://127.0.0.1:5173`. No install, no API key, no acco
 
 ## What you get
 
+Click any row to see the live verdict on ai-death.vercel.app:
+
 | Description | Tier | Score |
 |---|---|---|
-| *"AI assistant that summarizes meetings and writes follow-up emails using prompt templates."* | `DEAD` | 94 |
-| *"Two-sided marketplace connecting freelance plumbers with homeowners, with payments and dispute resolution."* | `FORTRESS` | 26 |
-| *"HIPAA-compliant electronic health records system used by 200 hospitals. Integrates with lab equipment, insurance billing, and physical pharmacy dispensing."* | `IMMORTAL` | 0 |
+| [*"AI assistant that summarizes meetings and writes follow-up emails using prompt templates."*](https://ai-death.vercel.app/#desc=An%20AI-powered%20assistant%20that%20summarizes%20meetings%20and%20writes%20follow-up%20emails%20using%20prompt%20templates.&stage=idea&buyer=consumer&surface=software) | `DEAD` | 94 |
+| [*"Two-sided marketplace connecting freelance plumbers with homeowners, with payments and dispute resolution."*](https://ai-death.vercel.app/#desc=Two-sided%20marketplace%20connecting%20freelance%20plumbers%20with%20homeowners%2C%20with%20payments%20and%20dispute%20resolution.) | `FORTRESS` | 26 |
+| [*"HIPAA-compliant electronic health records system used by 200 hospitals. Integrates with lab equipment, insurance billing, and physical pharmacy dispensing."*](https://ai-death.vercel.app/#desc=HIPAA-compliant%20electronic%20health%20records%20system%20used%20by%20200%20hospitals.%20Integrates%20with%20lab%20equipment%2C%20insurance%20billing%2C%20and%20physical%20pharmacy%20dispensing.&stage=contracts&buyer=regulated&surface=compliance) | `IMMORTAL` | 0 |
 
 The court delivers a verdict, a death probability, three sharpened roast notes, and a mock `.md` skill that would replace the product.
 
@@ -72,10 +74,16 @@ Same description, very different verdict. An idea-stage consumer wrapper reads `
 Pre-bake a verdict by encoding the description (and optional context) in the URL hash:
 
 ```
-http://127.0.0.1:5173/#desc=ENCODED_TEXT&stage=paying&buyer=enterprise&surface=compliance
+https://ai-death.vercel.app/#desc=ENCODED_TEXT&stage=paying&buyer=enterprise&surface=compliance
 ```
 
-The form auto-submits on load, so you can drop these into Slack/X/HN comments.
+The form auto-submits on load, so you can drop these into Slack/X/HN comments. A few primed examples:
+
+- [`DEAD` — chatbot wrapper](https://ai-death.vercel.app/#desc=A%20ChatGPT-powered%20chatbot%20that%20answers%20questions%20about%20your%20company%27s%20documents.&stage=idea&buyer=smb&surface=software)
+- [`THIN ICE` — note-taking app](https://ai-death.vercel.app/#desc=AI-powered%20note-taking%20app%20for%20marketing%20teams%20that%20summarizes%20meetings%20and%20posts%20to%20Slack.&stage=users&buyer=smb&surface=software)
+- [`SWEATING` — vertical SaaS for dental clinics](https://ai-death.vercel.app/#desc=Vertical%20SaaS%20for%20dental%20clinics%3A%20scheduling%2C%20patient%20records%2C%20and%20insurance%20claims.&stage=paying&buyer=smb)
+- [`FORTRESS` — freelance plumber marketplace](https://ai-death.vercel.app/#desc=Two-sided%20marketplace%20connecting%20freelance%20plumbers%20with%20homeowners%2C%20with%20payments%20and%20dispute%20resolution.)
+- [`IMMORTAL` — HIPAA EHR for hospitals](https://ai-death.vercel.app/#desc=HIPAA-compliant%20electronic%20health%20records%20system%20used%20by%20200%20hospitals.%20Integrates%20with%20lab%20equipment%2C%20insurance%20billing%2C%20and%20physical%20pharmacy%20dispensing.&stage=contracts&buyer=regulated&surface=compliance)
 
 ## How the scorer works
 
